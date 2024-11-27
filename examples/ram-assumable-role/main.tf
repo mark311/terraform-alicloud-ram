@@ -91,3 +91,24 @@ module "ram_assumable_role_with_max_session_duration" {
     "acs:ram::${data.alicloud_account.this.id}:root"
   ]
 }
+
+###############################
+# RAM assumable role with user-specified system policy
+###############################
+module "ram_assumable_role_with_system_policy" {
+  source = "../../modules/ram-assumable-role"
+
+  create_role = true
+  role_name   = "role-with-system-policy"
+  description = "test RAM assumable role with user-specified system policy"
+
+  action                 = "sts:AssumeRole"
+
+  trusted_role_arns = [
+    "acs:ram::${data.alicloud_account.this.id}:root"
+  ]
+
+  system_role_policy_names = [
+    "AliyunECSReadOnlyAccess"
+  ]
+}

@@ -82,14 +82,18 @@ variable "force" {
   default     = false
 }
 
-# alicloud_ram_role_policy_attachment
 variable "custom_role_policy_names" {
-  description = "List of ARNs of RAM policies to attach to RAM role"
+  description = "List of names of RAM policies of Custom type to attach to RAM role"
   type        = list(string)
   default     = []
 }
 
-#alicloud_ram_role_policy_attachment
+variable "system_role_policy_names" {
+  description = "List of names of RAM policies of System type to attach to RAM role"
+  type        = list(string)
+  default     = []
+}
+
 variable "attach_admin_policy" {
   description = "Whether to attach an admin policy to a role"
   type        = bool

@@ -20,6 +20,14 @@ resource "alicloud_ram_role_policy_attachment" "custom" {
   policy_type = "Custom"
 }
 
+resource "alicloud_ram_role_policy_attachment" "system" {
+  count = var.create_role ? length(var.system_role_policy_names) : 0
+
+  role_name   = alicloud_ram_role.this[0].name
+  policy_type = "System"
+  policy_name = element(var.system_role_policy_names, count.index)
+}
+
 resource "alicloud_ram_role_policy_attachment" "admin" {
   count = var.create_role && var.attach_admin_policy ? 1 : 0
 
