@@ -8,6 +8,8 @@ resource "alicloud_ram_role" "this" {
   document    = var.role_requires_mfa ? local.assume_role_with_mfa_document : local.assume_role_document
   description = var.description
   force       = var.force
+
+  max_session_duration = var.max_session_duration
 }
 
 resource "alicloud_ram_role_policy_attachment" "custom" {

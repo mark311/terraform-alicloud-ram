@@ -73,3 +73,21 @@ module "ram_assumable_role_custom" {
     alicloud_ram_policy.default.policy_name
   ]
 }
+
+###############################
+# RAM assumable role with max_session_duration
+###############################
+module "ram_assumable_role_with_max_session_duration" {
+  source = "../../modules/ram-assumable-role"
+
+  create_role = true
+  role_name   = "role-with-duration-7200"
+  description = "test RAM assumable role with max_session_duration "
+
+  action                 = "sts:AssumeRole"
+  max_session_duration   = 7200
+
+  trusted_role_arns = [
+    "acs:ram::${data.alicloud_account.this.id}:root"
+  ]
+}
