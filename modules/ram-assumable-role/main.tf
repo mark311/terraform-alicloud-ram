@@ -5,7 +5,9 @@ resource "alicloud_ram_role" "this" {
   count = var.create_role ? 1 : 0
 
   name        = local.role_name
-  document    = var.role_requires_mfa ? local.assume_role_with_mfa_document : local.assume_role_document
+  document    = coalesce(
+    (var.create_custom_role_trust_policy ? var.custom_role_trust_policy : ""),
+    (var.role_requires_mfa ? local.assume_role_with_mfa_document : local.assume_role_document))
   description = var.description
   force       = var.force
 

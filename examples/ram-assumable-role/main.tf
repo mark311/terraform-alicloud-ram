@@ -112,3 +112,36 @@ module "ram_assumable_role_with_system_policy" {
     "AliyunECSReadOnlyAccess"
   ]
 }
+
+###############################
+# RAM assumable role with custom trust policy
+###############################
+module "ram_assumable_role_with_custom_trust_policy" {
+  source = "../../modules/ram-assumable-role"
+
+  create_role = true
+  role_name   = "role-with-custom-trust-policy"
+  description = "test RAM assumable role with custom trust policy"
+
+  action                 = "sts:AssumeRole"
+
+  create_custom_role_trust_policy = true
+  custom_role_trust_policy = <<EOF
+  {
+    "Statement": [
+      {
+        "Action": "sts:AssumeRole",
+        "Effect": "Allow",
+        "Principal": {
+            "Service": "fc.aliyuncs.com"
+        }
+      }
+    ],
+      "Version": "1"
+  }
+  EOF
+
+  system_role_policy_names = [
+    "AliyunECSReadOnlyAccess"
+  ]
+}
