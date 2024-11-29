@@ -42,3 +42,19 @@ resource "alicloud_ram_access_key" "this_no_pgp" {
   secret_file = var.secret_file != "" ? var.secret_file : null
   status      = var.status
 }
+
+resource "alicloud_ram_user_policy_attachment" "custom" {
+  for_each = { for k, v in var.custom_policy_names : k => v if var.create_user }
+
+  user_name   = alicloud_ram_user.this[0].name
+  policy_name = each.value
+  policy_type = "Custom"
+}
+
+resource "alicloud_ram_user_policy_attachment" "system" {
+  for_each = { for k, v in var.system_policy_names : k => v if var.create_user }
+
+  user_name   = alicloud_ram_user.this[0].name
+  policy_name = each.value
+  policy_type = "System"
+}

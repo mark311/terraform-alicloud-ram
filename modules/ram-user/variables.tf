@@ -113,3 +113,15 @@ variable "status" {
   type        = string
   default     = "Active"
 }
+
+variable "custom_policy_names" {
+  description = "List of names of RAM policies of Custom type to attach to RAM user"
+  type        = list(string)
+  default     = []
+}
+
+variable "system_policy_names" {
+  description = "List of names of RAM policies of System type to attach to RAM user"
+  type        = list(string)
+  default     = []
+}
