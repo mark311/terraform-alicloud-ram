@@ -28,3 +28,8 @@ output "this_ram_access_key_key_fingerprint" {
   description = "The fingerprint of the PGP key used to encrypt the secret"
   value       = element(concat(alicloud_ram_access_key.this.*.key_fingerprint, [""]), 0)
 }
+
+output "this_ram_access_key_status" {
+  description = "Active or Inactive. Keys are initially active, but can be made inactive by other means."
+  value       = try(alicloud_ram_access_key.this[0].status, alicloud_ram_access_key.this_no_pgp[0].status, "")
+}

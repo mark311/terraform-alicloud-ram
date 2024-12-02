@@ -28,3 +28,8 @@ output "this_ram_access_key_key_fingerprint" {
   description = "The fingerprint of the PGP key used to encrypt the secret"
   value       = module.ram_user_with_encrypted_secret.this_ram_access_key_key_fingerprint
 }
+
+output "this_ram_access_key_status" {
+  description = "Active or Inactive. Keys are initially active, but can be made inactive by other means."
+  value       = module.ram_user_with_encrypted_secret.this_ram_access_key_status
+}
