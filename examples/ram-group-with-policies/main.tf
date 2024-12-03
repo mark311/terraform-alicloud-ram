@@ -1,3 +1,24 @@
+resource "random_integer" "default" {
+  min = 10000
+  max = 99999
+}
+
+resource "alicloud_ram_policy" "custom-policy-1" {
+  policy_name     = "ram-group-example-policy-${random_integer.default.result}"
+  policy_document = <<EOF
+	{
+		"Version": "1",
+		"Statement": [
+		  {
+			"Action": "mns:*",
+			"Resource": "*",
+			"Effect": "Allow"
+		  }
+		]
+	  }
+	EOF
+}
+
 ################################
 # RAM users
 ################################
@@ -39,4 +60,21 @@ module "ram_group_superadmins" {
   resource    = ["acs:oss:*:*:mybucket"]
   policy_type = "Custom"
   description = "example"
+}
+
+################################
+# RAM group with managed policies attached
+################################
+module "ram_group_with_managed_policies_attached" {
+  source = "../../modules/ram-group-with-policies"
+
+  name = "ram-group-with-managed-policies-attached"
+
+  user_names = [
+    module.ram_user1.this_ram_user_name,
+    module.ram_user2.this_ram_user_name
+  ]
+
+  managed_custom_policy_names = [alicloud_ram_policy.custom-policy-1.policy_name]
+  managed_system_policy_names = ["AliyunECSReadOnlyAccess", "AliyunOSSReadOnlyAccess"]
 }

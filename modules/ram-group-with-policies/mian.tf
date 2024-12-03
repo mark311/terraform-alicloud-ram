@@ -25,7 +25,7 @@ resource "alicloud_ram_group_membership" "this" {
 
 # RAM group policy attachements
 resource "alicloud_ram_group_policy_attachment" "ram_self_management" {
-  count = var.attach_ram_self_management_policy ? 1 : 0
+  count = (var.attach_ram_self_management_policy && length(var.action) > 0) ? 1 : 0
 
   group_name  = local.group_name
   policy_name = alicloud_ram_policy.ram_self_management[0].name
@@ -50,7 +50,7 @@ resource "alicloud_ram_group_policy_attachment" "custom" {
 
 # RAM policies
 resource "alicloud_ram_policy" "ram_self_management" {
-  count = var.attach_ram_self_management_policy ? 1 : 0
+  count = (var.attach_ram_self_management_policy && length(var.action) > 0) ? 1 : 0
 
   policy_name     = var.name
   policy_document = local.document
@@ -65,4 +65,20 @@ resource "alicloud_ram_policy" "custom" {
   policy_document = var.custom_group_policies[count.index].document
   description     = var.description != "" ? var.description : null
   force           = var.force
+}
+
+resource "alicloud_ram_group_policy_attachment" "managed_custom" {
+  count = length(var.managed_custom_policy_names) > 0 ? length(var.managed_custom_policy_names) : 0
+
+  group_name  = local.group_name
+  policy_name = element(var.managed_custom_policy_names, count.index)
+  policy_type = "Custom"
+}
+
+resource "alicloud_ram_group_policy_attachment" "managed_system" {
+  count = length(var.managed_system_policy_names) > 0 ? length(var.managed_system_policy_names) : 0
+
+  group_name  = local.group_name
+  policy_name = element(var.managed_system_policy_names, count.index)
+  policy_type = "System"
 }

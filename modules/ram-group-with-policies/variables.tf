@@ -72,6 +72,18 @@ variable "custom_group_policy_names" {
   default     = []
 }
 
+variable "managed_custom_policy_names" {
+  description = "List of names of managed policies of Custom type to attach to RAM group"
+  type        = list(string)
+  default     = []
+}
+
+variable "managed_system_policy_names" {
+  description = "List of names of managed policies of System type to attach to RAM group"
+  type        = list(string)
+  default     = []
+}
+
 variable "custom_group_policies" {
   description = "List of maps of inline RAM policies to attach to RAM group. Should have `name` and `documnet` keys in each element."
   type        = list(map(string))
