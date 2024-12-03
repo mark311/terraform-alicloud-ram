@@ -69,7 +69,7 @@ module "ram_assumable_role_custom" {
     "ecs.aliyuncs.com"
   ]
 
-  custom_role_policy_names = [
+  managed_custom_policy_names = [
     alicloud_ram_policy.default.policy_name
   ]
 }
@@ -108,7 +108,7 @@ module "ram_assumable_role_with_system_policy" {
     "acs:ram::${data.alicloud_account.this.id}:root"
   ]
 
-  system_role_policy_names = [
+  managed_system_policy_names = [
     "AliyunECSReadOnlyAccess"
   ]
 }
@@ -141,7 +141,7 @@ module "ram_assumable_role_with_custom_trust_policy" {
   }
   EOF
 
-  system_role_policy_names = [
+  managed_system_policy_names = [
     "AliyunECSReadOnlyAccess"
   ]
 }
