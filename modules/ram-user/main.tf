@@ -44,7 +44,7 @@ resource "alicloud_ram_access_key" "this_no_pgp" {
 }
 
 resource "alicloud_ram_user_policy_attachment" "custom" {
-  for_each = { for k, v in var.custom_policy_names : k => v if var.create_user }
+  for_each = { for k, v in var.managed_custom_policy_names : k => v if var.create_user }
 
   user_name   = alicloud_ram_user.this[0].name
   policy_name = each.value
@@ -52,7 +52,7 @@ resource "alicloud_ram_user_policy_attachment" "custom" {
 }
 
 resource "alicloud_ram_user_policy_attachment" "system" {
-  for_each = { for k, v in var.system_policy_names : k => v if var.create_user }
+  for_each = { for k, v in var.managed_system_policy_names : k => v if var.create_user }
 
   user_name   = alicloud_ram_user.this[0].name
   policy_name = each.value

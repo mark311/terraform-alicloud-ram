@@ -57,8 +57,8 @@ module "ram_user_with_attached_policies" {
   password                      = "123_Xxxxxxxxx"
   create_ram_user_login_profile = false
   create_ram_access_key         = false
-  system_policy_names           = ["AliyunECSReadOnlyAccess", "AliyunRAMReadOnlyAccess"]
-  custom_policy_names           = [alicloud_ram_policy.custom-policy-1.policy_name]
+  managed_system_policy_names   = ["AliyunECSReadOnlyAccess", "AliyunRAMReadOnlyAccess"]
+  managed_custom_policy_names   = [alicloud_ram_policy.custom-policy-1.policy_name]
 }
 
 #########################################
