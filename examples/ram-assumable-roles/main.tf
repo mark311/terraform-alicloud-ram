@@ -11,8 +11,28 @@ module "ram_assumable_roles" {
   admin_role_name            = "admin2"
   create_poweruser_role      = true
   poweruser_role_name        = "OSS-and-NASR"
+  create_readonly_role       = true
+  readonly_role_name         = "readonly2"
+
+  action = "sts:AssumeRole"
+  trusted_role_arns = [
+    "acs:ram::${data.alicloud_account.this.id}:root"
+  ]
+  trusted_role_services = [
+    "ecs.aliyuncs.com"
+  ]
+  poweruser_role_policy_names = [
+    "AliyunOSSFullAccess",
+    "AliyunNASReadOnlyAccess"
+  ]
+}
+
+module "ram_assumable_roles_with_none_role_created" {
+  source = "../../modules/ram-assumable-roles"
+
+  create_admin_role          = false
+  create_poweruser_role      = false
   create_readonly_role       = false
-  readonly_role_requires_mfa = false
 
   action = "sts:AssumeRole"
   trusted_role_arns = [
