@@ -9,6 +9,8 @@ resource "alicloud_ram_role" "admin" {
   document    = var.admin_role_requires_mfa ? local.assume_role_with_mfa_document : local.assume_role_document
   description = var.description
   force       = var.force
+
+  max_session_duration = var.max_session_duration
 }
 
 resource "alicloud_ram_role_policy_attachment" "admin" {
@@ -27,6 +29,8 @@ resource "alicloud_ram_role" "poweruser" {
   document    = var.poweruser_role_requires_mfa ? local.assume_role_with_mfa_document : local.assume_role_document
   description = var.description
   force       = var.force
+
+  max_session_duration = var.max_session_duration
 }
 
 resource "alicloud_ram_role_policy_attachment" "poweruser" {
@@ -45,6 +49,8 @@ resource "alicloud_ram_role" "readonly" {
   document    = var.readonly_role_requires_mfa ? local.assume_role_with_mfa_document : local.assume_role_document
   description = var.description
   force       = var.force
+
+  max_session_duration = var.max_session_duration
 }
 
 resource "alicloud_ram_role_policy_attachment" "readonly" {

@@ -26,3 +26,24 @@ module "ram_assumable_roles" {
     "AliyunNASReadOnlyAccess"
   ]
 }
+
+module "ram_assumable_roles_with_max_session_duration" {
+  source = "../../modules/ram-assumable-roles"
+
+  create_admin_role          = true
+  create_poweruser_role      = true
+  create_readonly_role       = true
+
+  action = "sts:AssumeRole"
+  max_session_duration   = 7200
+  trusted_role_arns = [
+    "acs:ram::${data.alicloud_account.this.id}:root"
+  ]
+  trusted_role_services = [
+    "ecs.aliyuncs.com"
+  ]
+  poweruser_role_policy_names = [
+    "AliyunOSSFullAccess",
+    "AliyunNASReadOnlyAccess"
+  ]
+}

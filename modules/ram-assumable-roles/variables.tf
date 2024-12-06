@@ -22,6 +22,12 @@ variable "skip_region_validation" {
   default     = false
 }
 
+variable "max_session_duration" {
+  description = "Maximum session duration in seconds, refer to the parameter MaxSessionDuration of [CreateRole](https://api.aliyun.com/document/Ram/2015-05-01/CreateRole)"
+  type        = number
+  default     = 3600
+}
+
 # alicloud_ram_role
 variable "admin_role_requires_mfa" {
   description = "Whether admin role requires MFA"
