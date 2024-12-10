@@ -33,3 +33,8 @@ output "this_ram_access_key_status" {
   description = "Active or Inactive. Keys are initially active, but can be made inactive by other means."
   value       = try(alicloud_ram_access_key.this[0].status, alicloud_ram_access_key.this_no_pgp[0].status, "")
 }
+
+output "this_pgp_key" {
+  description = "PGP key used to encrypt sensitive data for this user (if empty, no encryption)"
+  value       = var.pgp_key
+}
