@@ -49,7 +49,7 @@ variable "role_requires_mfa" {
 variable "action" {
   description = "Operations on specific resources"
   type        = string
-  default     = ""
+  default     = "sts:AssumeRole"
 }
 
 variable "trusted_role_arns" {

@@ -14,7 +14,6 @@ module "ram_assumable_roles" {
   create_readonly_role       = true
   readonly_role_name         = "readonly2"
 
-  action = "sts:AssumeRole"
   trusted_role_arns = [
     "acs:ram::${data.alicloud_account.this.id}:root"
   ]
@@ -34,7 +33,6 @@ module "ram_assumable_roles_with_none_role_created" {
   create_poweruser_role      = false
   create_readonly_role       = false
 
-  action = "sts:AssumeRole"
   trusted_role_arns = [
     "acs:ram::${data.alicloud_account.this.id}:root"
   ]
@@ -54,7 +52,6 @@ module "ram_assumable_roles_with_max_session_duration" {
   create_poweruser_role      = true
   create_readonly_role       = true
 
-  action = "sts:AssumeRole"
   max_session_duration   = 7200
   trusted_role_arns = [
     "acs:ram::${data.alicloud_account.this.id}:root"
