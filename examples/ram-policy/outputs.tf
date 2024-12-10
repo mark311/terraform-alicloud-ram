@@ -12,3 +12,8 @@ output "this_ram_policy_version" {
   description = "The policy document version"
   value       = module.ram_policy.this_ram_policy_version
 }
+
+output "this_ram_policy_document" {
+  description = "The policy document"
+  value       = module.ram_policy.this_ram_policy_document
+}

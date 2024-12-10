@@ -22,3 +22,8 @@ output "this_ram_policy_version" {
   description = "The policy document version"
   value       = alicloud_ram_policy.this.version
 }
+
+output "this_ram_policy_document" {
+  description = "The policy document"
+  value       = alicloud_ram_policy.this.policy_document
+}
