@@ -29,6 +29,26 @@ module "ram_assumable_role_admin" {
 }
 
 ###############################
+# RAM assumable role with role_requires_mfa false
+###############################
+
+module "ram_assumable_role_with_role_requires_mfa_false" {
+  source = "../../modules/ram-assumable-role"
+
+  create_role = true
+  role_name   = "admin1-requires-mfa-false"
+  description = "test ram-assumable-role-with-role-requires-mfa-false"
+
+  role_requires_mfa = false
+
+  attach_admin_policy    = true
+  admin_role_policy_name = concat(data.alicloud_ram_policies.admin.*.policies.0.policy_name, [""])[0]
+  trusted_role_arns = [
+    "acs:ram::${data.alicloud_account.this.id}:root"
+  ]
+}
+
+###############################
 # RAM assumable role with custom policies
 ###############################
 
