@@ -77,7 +77,7 @@ variable "description" {
 }
 
 variable "force" {
-  description = "This parameter is used for resource destroy"
+  description = "This parameter is used for RAM role force destroy"
   type        = bool
   default     = false
 }
