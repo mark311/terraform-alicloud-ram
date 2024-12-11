@@ -28,7 +28,7 @@ data "alicloud_ram_policy_document" "assume_role_with_oidc" {
         for_each = var.provider_trust_policy_conditions
 
         content {
-          operator = condition.value.test
+          operator = condition.value.operator
           variable = condition.value.variable
           values   = condition.value.values
         }

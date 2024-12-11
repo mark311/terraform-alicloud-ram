@@ -34,7 +34,7 @@ module "ram-assumable-role-with-oidc-example" {
 
   provider_trust_policy_conditions = [
     {
-      test     = "StringLike"
+      operator = "StringLike"
       variable = "aws:RequestTag/Environment"
       values   = ["example"]
     }
