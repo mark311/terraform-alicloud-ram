@@ -24,9 +24,7 @@ resource "alicloud_ram_role" "this" {
   name                 = var.role_name
   max_session_duration = var.max_session_duration
   description          = var.role_description
-
-  # TODO: not support force_detach_policies
-  #force_detach_policies = var.force_detach_policies
+  force                = var.force
 
   document = data.alicloud_ram_policy_document.assume_role_with_saml[0].document
 }

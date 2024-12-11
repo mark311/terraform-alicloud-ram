@@ -28,8 +28,8 @@ variable "managed_system_policy_names" {
   default     = []
 }
 
-variable "force_detach_policies" {
-  description = "Whether policies should be detached from this role when destroying"
+variable "force" {
+  description = "This parameter is used for RAM role force destroy"
   type        = bool
   default     = false
 }
