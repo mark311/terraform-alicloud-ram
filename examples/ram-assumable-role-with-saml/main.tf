@@ -30,7 +30,7 @@ module "ram-assumable-role-with-saml-example" {
     "acs:ram::${local.account_id}:saml-provider/test-provider-2",
   ]
 
-  role_system_policy_names = [
+  managed_system_policy_names = [
     "AliyunECSFullAccess",
   ]
 }

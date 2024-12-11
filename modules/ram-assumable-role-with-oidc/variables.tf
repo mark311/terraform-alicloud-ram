@@ -16,14 +16,14 @@ variable "role_name" {
   default     = null
 }
 
-variable "role_policy_names" {
-  description = "List of names of RAM policies of Custom type to attach to RAM role"
+variable "managed_custom_policy_names" {
+  description = "List of names of managed policies of Custom type to attach to RAM user"
   type        = list(string)
   default     = []
 }
 
-variable "role_system_policy_names" {
-  description = "List of names of RAM policies of System type to attach to RAM role"
+variable "managed_system_policy_names" {
+  description = "List of names of managed policies of System type to attach to RAM user"
   type        = list(string)
   default     = []
 }

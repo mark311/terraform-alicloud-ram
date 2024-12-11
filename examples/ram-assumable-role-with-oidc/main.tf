@@ -28,7 +28,7 @@ module "ram-assumable-role-with-oidc-example" {
 
   oidc_fully_qualified_audiences = ["CIRCLECI_ORG_UUID"]
 
-  role_system_policy_names = [
+  managed_system_policy_names = [
     "AliyunECSFullAccess",
   ]
 

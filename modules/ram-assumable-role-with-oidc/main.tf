@@ -51,17 +51,17 @@ resource "alicloud_ram_role" "this" {
 }
 
 resource "alicloud_ram_role_policy_attachment" "custom_role_policies" {
-  count = var.create_role ? length(var.role_policy_names) : 0
+  count = var.create_role ? length(var.managed_custom_policy_names) : 0
 
   role_name   = alicloud_ram_role.this[0].name
   policy_type = "Custom"
-  policy_name = element(var.role_policy_names, count.index)
+  policy_name = element(var.managed_custom_policy_names, count.index)
 }
 
 resource "alicloud_ram_role_policy_attachment" "custom_role_system_policies" {
-  count = var.create_role ? length(var.role_system_policy_names) : 0
+  count = var.create_role ? length(var.managed_system_policy_names) : 0
 
   role_name   = alicloud_ram_role.this[0].name
   policy_type = "System"
-  policy_name = element(var.role_system_policy_names, count.index)
+  policy_name = element(var.managed_system_policy_names, count.index)
 }
