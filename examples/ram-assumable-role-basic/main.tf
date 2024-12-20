@@ -5,8 +5,8 @@ module "ram-assumable-role-example" {
   source = "../../modules/ram-assumable-role"
 
   create_role = true
-  role_name   = "tf-ram-assumable-role-example-basic"
-  description = "tf-ram-assumable-role-example-basic"
+  role_name   = "tf-example-ram-assumable-role-basic"
+  description = "tf-example-ram-assumable-role-basic"
 
   role_requires_mfa         = false
   attach_admin_policy       = true

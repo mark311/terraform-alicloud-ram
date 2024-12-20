@@ -7,7 +7,7 @@ resource "random_integer" "default" {
 }
 
 resource "alicloud_ram_policy" "default" {
-  policy_name     = "tf-ram-assumable-role-example-complete-examplepolicy-${random_integer.default.result}"
+  policy_name     = "tf-example-ram-assumable-role-complete-examplepolicy-${random_integer.default.result}"
   policy_document = <<EOF
         {
                 "Version": "1",
@@ -26,8 +26,8 @@ module "ram-assumable-role-example" {
   source = "../../modules/ram-assumable-role"
 
   create_role = true
-  role_name   = "tf-ram-assumable-role-example-complete"
-  description = "tf-ram-assumable-role-example-complete"
+  role_name   = "tf-example-ram-assumable-role-complete"
+  description = "tf-example-ram-assumable-role-complete"
 
   max_session_duration      = 7200
   role_requires_mfa         = true
