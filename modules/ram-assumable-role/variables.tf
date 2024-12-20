@@ -127,7 +127,7 @@ variable "attach_readonly_policy" {
 variable "admin_role_policy_name" {
   description = "Policy ARN to use for admin role"
   type        = string
-  default     = ""
+  default     = "AdministratorAccess"
 }
 
 variable "power_role_policy_name" {
@@ -139,5 +139,5 @@ variable "power_role_policy_name" {
 variable "readonly_role_policy_name" {
   description = "Policy ARN to use for readonly role"
   type        = string
-  default     = ""
+  default     = "ReadOnlyAccess"
 }
