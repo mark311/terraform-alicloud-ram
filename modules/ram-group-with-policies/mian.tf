@@ -29,7 +29,7 @@ resource "alicloud_ram_group_policy_attachment" "ram_self_management" {
 
   group_name  = local.group_name
   policy_name = alicloud_ram_policy.ram_self_management[0].name
-  policy_type = var.policy_type
+  policy_type = "Custom"
 }
 
 resource "alicloud_ram_group_policy_attachment" "custom_names" {
@@ -37,7 +37,7 @@ resource "alicloud_ram_group_policy_attachment" "custom_names" {
 
   group_name  = local.group_name
   policy_name = element(var.custom_group_policy_names, count.index)
-  policy_type = var.policy_type
+  policy_type = "Custom"
 }
 
 resource "alicloud_ram_group_policy_attachment" "custom" {
@@ -45,7 +45,7 @@ resource "alicloud_ram_group_policy_attachment" "custom" {
 
   group_name  = local.group_name
   policy_name = element(alicloud_ram_policy.custom.*.name, count.index)
-  policy_type = var.policy_type
+  policy_type = "Custom"
 }
 
 # RAM policies
