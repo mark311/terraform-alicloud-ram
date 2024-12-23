@@ -31,7 +31,7 @@ variable "policy_name" {
 variable "action" {
   description = "Operations on specific resources"
   type        = string
-  default     = ""
+  default     = "sts:AssumeRole"
 }
 
 variable "assumable_roles" {
